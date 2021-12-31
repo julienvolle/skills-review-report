@@ -1,0 +1,37 @@
+{% macro form_row(category, category_id) %}
+
+    <div class="row g-0">
+
+        <div class="col-auto d-flex align-items-center" title="{% trans %}page.framework.category.btn_move{% endtrans %}">
+            <i class="handle bi bi-arrows-fullscreen"></i>
+        </div>
+
+        <div class="col px-2">
+            <div class="row g-2">
+                {{ form_widget(category.priority) }}
+                <div class="col-sm-4">
+                    {{ form_widget(category.name, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+                </div>
+                <div class="col-sm-8">
+                    {{ form_widget(category.description, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto d-flex align-items-center">
+            <button type="button"
+                    title="{% trans %}page.framework.category.btn_del{% endtrans %}"
+                    class="form-collection-button-del text-danger bg-transparent border-0">
+                <i class="bi bi-trash"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            {% include('partial/form/collection/_collection_skill.html.twig') with {'form': category.skills} %}
+        </div>
+    </div>
+
+{% endmacro %}

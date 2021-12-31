@@ -1,0 +1,50 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+###> phpstorm ###
+.idea
+###< phpstorm ###
+
+###> devilbox ###
+/htdocs
+###< devilbox ###
+
+###> squizlabs/php_codesniffer ###
+/phpcs.cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> docker ###
+/docker-compose.override.yml
+###< docker ###
+
+###> sonarqube ###
+/.scannerwork
+/sonar-project.properties
+/sonar-scanner.sh
+###< sonarqube ###

@@ -1,0 +1,46 @@
+<!-- modal_framework_update -->
+<div id="frameworkEditModal"
+     class="modal fade"
+     aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-2">
+                                <button class="btn-close position-absolute top-0 end-0 mt-1 me-1"
+                                        type="button"
+                                        data-bs-target="#frameworkModal"
+                                        data-bs-toggle="modal"
+                                        data-bs-dismiss="modal"></button>
+                                <label for="framework_update_guid" class="form-label required">
+                                    {% trans %}page.home.framework.update.label{% endtrans %}
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-select form-select-sm rounded-0" id="framework_update_guid">
+                                        {% for framework in frameworks %}
+                                            <option value="{{ framework.guid }}">{{ framework.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="button"
+                                            title="{% trans %}page.home.framework.update.btn_submit{% endtrans %}"
+                                            id="framework_update_submit"
+                                            data-button="button"
+                                            data-button-href="{{ path('framework_update', {'framework_id': '___guid___'}) }}"
+                                            data-button-context="{'___guid___': '#framework_update_guid'}"
+                                            data-button-target="_self"
+                                            class="btn btn-sm btn-grey rounded-0">
+                                        <i class="bi bi-box-arrow-in-up-right me-1"></i> {% trans %}page.home.framework.update.btn_submit{% endtrans %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal_framework_update -->

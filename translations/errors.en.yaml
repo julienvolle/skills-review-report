@@ -1,0 +1,28 @@
+exception:
+
+  framework:
+    400:
+      wrong_guid: "Wrong Framework ID"
+    404: "Framework not found"
+    delete:
+      is_used: "A used framework cannot be deleted"
+    import:
+      already_exist: "This framework already exists"
+      upload_file:
+        extension: "Extension file \".%extension%\" not supported"
+        type:      "Type file \"%file%\" not supported"
+        invalid:   "File data does not match a framework"
+
+  interview:
+    400:
+      wrong_guid: "Wrong Interview ID"
+    404: "Interview not found"
+    import:
+      already_exist: "This interview already exists"
+      upload_file:
+        extension: "Extension file \".%extension%\" not supported"
+        type:      "Type file \"%file%\" not supported"
+        invalid:   "File data does not match an interview"
+
+  semver:
+    invalid: "Invalid semver file contents"

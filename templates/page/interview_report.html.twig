@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {% trans %}page.report.head_title{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <div class="container my-5 p-5 bg-white">
+
+        <h1 class="display-4 text-center">{{ interview.title }}</h1>
+
+        <h3 class="text-center">{{ interview.firstName }} {{ interview.lastName|upper }}</h3>
+
+        <p class="text-center text-muted">{{ interview.createdAt|date('Y-m-d H:i') }}</p>
+
+        <div class="row mb-5">
+            <div class="col">{{ render_chart(chart['radar']) }}</div>
+        </div>
+
+        {# Get level required #}
+        {% set levels = interview.framework.levels|sort((a, b) => b.priority <=> a.priority) %}
+        {% set level_required_name = '' %}
+        {% for level in levels %}
+            {% if loop.index == interview.result.level_required %}
+                {% set level_required_name = level.name %}
+            {% endif %}
+            {% if loop.index == (interview.result.level_required - 0.5) %}
+                {% set level_required_name = level_required_name ~ level.name ~ ' / ' %}
+            {% endif %}
+            {% if loop.index == (interview.result.level_required + 0.5) %}
+                {% set level_required_name = level_required_name ~ level.name %}
+            {% endif %}
+        {% endfor %}
+
+        {# Get score by category #}
+        {% set moys = {} %}
+        {% for key, value in scores %}
+            {% set moy = (scores[key]|sum / scores[key]|length)|round(1, 'floor') %}
+            {% set moys = moys|merge({(key): moy}) %}
+        {% endfor %}
+
+        {# Get global score + set SUCCESS or FAILED display #}
+        {% set level_result = (moys|sum / moys|length)|round(1, 'floor') %}
+        {% if level_result >= interview.result.level_required %}
+            {% set color = 'success' %}
+            {% set icon = 'bi bi-check-square-fill' %}
+        {% else %}
+            {% set color = 'danger' %}
+            {% set icon = 'bi bi-x-square-fill' %}
+        {% endif %}
+
+        {# Get gradient colors for rating scale #}
+        {% set gradient_color = getGradientColor(
+            interview.framework.levels.count,
+            constant('App\\Constant\\ColorConstant::GREY'),
+            constant('App\\Constant\\ColorConstant::PINK')
+        ) %}
+
+        {# Display global report #}
+        {% if interview.result[interview.framework.guid] is defined %}
+        <div class="row mb-4">
+            <div class="col">
+                <b class="pe-2">Bilan :</b> {{ interview.result[interview.framework.guid] }}
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered text-center">
+                    <tr class="table-active">
+                        <td class="align-middle fw-bold w-50">{% trans %}page.report.level_required{% endtrans %}</td>
+                        <td class="align-middle fw-bold w-50">{% trans %}page.report.final_result{% endtrans %}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">{{ interview.result.level_required }} ({{ level_required_name }})</td>
+                        <td class="align-middle fw-bold text-{{ color }}">
+                            <i class="{{ icon }} me-1"></i> {{ level_result }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        {# Display details report #}
+        <div class="row">
+            <div class="col">
+                <ul class="list-group rounded-0">
+                    {% for key, value in scores %}
+
+                        {# Rating scale #}
+                        <li class="list-group-item list-group-item-secondary">
+                            <div class="progress rounded-0">
+                                {% set percent = (100 / interview.framework.levels.count)|round(2) %}
+                                {% for level in interview.framework.levels|sort((a, b) => b.priority <=> a.priority) %}
+                                    {% set bg_color = "#" ~ gradient_color[loop.index0] %}
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         style="width: {{ percent }}%; background-color: {{ bg_color }} !important;"
+                                         aria-valuenow="{{ percent }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100">{{ level.name }}</div>
+                                {% endfor %}
+                            </div>
+                        </li>
+
+                        {# Category details #}
+                        <li class="list-group-item pb-4">
+
+                            {# Set SUCCESS or FAILED result for this category #}
+                            {% if moys[key] >= interview.result.level_required %}
+                                {% set color = 'success' %}
+                                {% set icon = 'bi bi-check2-square' %}
+                            {% else %}
+                                {% set color = 'danger' %}
+                                {% set icon = 'bi bi-exclamation-triangle' %}
+                            {% endif %}
+
+                            {# Display result for this category #}
+                            <div class="row">
+                                <div class="col">
+                                    <p class="display-6 fw-bold mb-0 text-{{ color }}">
+                                        <i class="{{ icon }}"></i> {{ interview.framework.category(key).name }}
+                                    </p>
+                                </div>
+                                <div class="col d-flex align-items-end justify-content-end">
+                                    <small class="fw-bold pb-1">{% trans %}page.report.result{% endtrans %}: {{ moys[key]|round(1, 'floor') }}</small>
+                                </div>
+                            </div>
+
+                            {# Display progress bar for this category #}
+                            {% set percent = (moys[key] * 100 / interview.framework.levels.count) %}
+                            {% set padding = (100 / interview.framework.levels.count * 0.5) %}
+                            {% set width = (percent - padding)|round(2) %}
+                            <div class="progress mb-2 rounded-0">
+                                <div class="progress-bar progress-bar-striped bg-{{ color }}"
+                                     role="progressbar"
+                                     style="width: {{ width }}%;"
+                                     aria-valuenow="{{ width }}"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100"></div>
+                            </div>
+
+                            {# Details skills result for this category #}
+                            {% for index, data in scores[key] %}
+
+                                {# Set SUCCESS or FAILED result for this skill #}
+                                {% if data >= interview.result.level_required %}
+                                    {% set color = 'success' %}
+                                    {% set icon = 'bi bi-check-circle-fill' %}
+                                {% else %}
+                                    {% set color = 'danger' %}
+                                    {% set icon = 'bi bi-x-circle-fill' %}
+                                {% endif %}
+
+                                {# Display result for this skill #}
+                                <small class="text-{{ color }}">
+                                    <i class="{{ icon }}"></i> {{ interview.framework.category(key).skill(index).name }}
+                                </small><br>
+
+                                {# Display progress bar for this skill #}
+                                {% set percent = (data * 100 / interview.framework.levels.count) %}
+                                {% set padding = (100 / interview.framework.levels.count * 0.5) %}
+                                {% set width = (percent - padding)|round(2) %}
+                                <div class="progress progress-small mt-1 mb-2">
+                                    <div class="progress-bar bg-{{ color }}"
+                                         role="progressbar"
+                                         style="width: {{ width }}%;"
+                                         aria-valuenow="{{ width }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+
+                            {% endfor %}
+
+                            {# Comment for this category #}
+                            {% if interview.result[key] is defined %}
+                            <div class="card bg-light mt-3 rounded-0">
+                                <div class="card-body">
+                                    <small class="card-text">
+                                        <i class="bi bi-info-circle me-1"></i> {{ interview.result[key] }}
+                                    </small>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container text-center">{% include('partial/_baseline.html.twig') %}</div>
+
+{% endblock %}

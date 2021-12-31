@@ -1,0 +1,48 @@
+<!-- modal_interview_update -->
+<div id="interviewEditModal"
+     class="modal fade"
+     aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <button class="btn-close position-absolute top-0 end-0 mt-1 me-1"
+                                        type="button"
+                                        data-bs-target="#interviewModal"
+                                        data-bs-toggle="modal"
+                                        data-bs-dismiss="modal"></button>
+                                <label for="interview_update_guid" class="form-label required">
+                                    {% trans %}page.home.interview.update.label{% endtrans %}
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-select form-select-sm" id="interview_update_guid">
+                                        {% for interview in interviews %}
+                                            <option value="{{ interview.guid }}">
+                                                {{ interview.createdAt|date('Y-m-d') }} - {{ interview.firstname }} {{ interview.lastname }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="button"
+                                            title="{% trans %}page.home.interview.update.btn_submit{% endtrans %}"
+                                            id="interview_update_submit"
+                                            data-button="button"
+                                            data-button-href="{{ path('interview_update', {'interview_id': '___guid___'}) }}"
+                                            data-button-context="{'___guid___': '#interview_update_guid'}"
+                                            data-button-target="_self"
+                                            class="btn btn-sm btn-grey">
+                                        <i class="bi bi-box-arrow-in-up-right me-1"></i> {% trans %}page.home.interview.update.btn_submit{% endtrans %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal_interview_update -->

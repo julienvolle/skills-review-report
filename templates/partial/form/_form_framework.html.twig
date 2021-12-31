@@ -1,0 +1,60 @@
+{{ form_start(form) }}
+
+    <div class="card border-secondary bg-transparent p-4 rounded-0">
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(form.name, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.description, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+            </div>
+            <div class="col-sm-12 mt-3">
+                {% include('partial/form/collection/_collection_level.html.twig') with {'form': form.levels} %}
+            </div>
+            <div class="col-sm-12 mt-3">
+                {% include('partial/form/collection/_collection_category.html.twig') with {'form': form.categories} %}
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <button class="btn btn-sm btn-yellow rounded-0"
+                type="submit"
+                title="{% trans %}page.framework.btn_save{% endtrans %}"
+                name="save">
+            <i class="bi bi-hdd-stack me-1"></i> {% trans %}page.framework.btn_save{% endtrans %}
+        </button>
+        {% if framework is defined and framework is not null %}
+            {% if isGranted['frameworks']['export'] %}
+                <a href="{{ path('framework_export', {'framework_id': framework.guid}) }}"
+                   target="_blank"
+                   type="button"
+                   title="{% trans %}page.framework.btn_export{% endtrans %}"
+                   class="btn btn-sm btn-orange rounded-0">
+                    <i class="bi bi-download me-1"></i> {% trans %}page.framework.btn_export{% endtrans %}
+                </a>
+            {% endif %}
+            {% if isGranted['frameworks']['delete'] %}
+                <a href="{{ path('framework_delete', {'framework_id': framework.guid}) }}"
+                   type="button"
+                   title="{% trans %}page.framework.btn_delete{% endtrans %}"
+                   onclick="return confirm('{% trans from 'alerts' %}confirm.framework.delete{% endtrans %}');"
+                   class="btn btn-sm btn-red rounded-0">
+                    <i class="bi bi-trash me-1"></i> {% trans %}page.framework.btn_delete{% endtrans %}
+                </a>
+            {% endif %}
+            {% if isGranted['interviews']['create'] %}
+                <a href="{{ path('interview_create', {'framework_id': framework.guid}) }}"
+                   target="_self"
+                   type="button"
+                   title="{% trans %}page.framework.btn_start{% endtrans %}"
+                   class="btn btn-sm btn-cyan rounded-0 float-end">
+                    <i class="bi bi-people-fill me-1"></i> {% trans %}page.framework.btn_start{% endtrans %}
+                </a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {{ form_row(form._token) }}
+
+{{ form_end(form, {render_rest: false}) }}

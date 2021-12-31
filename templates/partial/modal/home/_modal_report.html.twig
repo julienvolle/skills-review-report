@@ -1,0 +1,43 @@
+<!-- modal_report -->
+<div id="reportModal"
+     class="modal fade"
+     aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        {% if reports|length > 0 %}
+                            <div class="col">
+                                <label for="interview_report_guid" class="form-label required">
+                                    {% trans %}page.home.report.label{% endtrans %}
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-select form-select-sm" id="interview_report_guid">
+                                        {% for interview in reports %}
+                                            <option value="{{ interview.guid }}">
+                                                {{ interview.createdAt|date('Y-m-d') }} - {{ interview.firstname }} {{ interview.lastname }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="button"
+                                            title="{% trans %}page.home.report.btn_submit{% endtrans %}"
+                                            id="interview_report_submit"
+                                            data-button="button"
+                                            data-button-href="{{ path('interview_report', {'interview_id': '___guid___'}) }}"
+                                            data-button-context="{'___guid___': '#interview_report_guid'}"
+                                            data-button-target="_blank"
+                                            class="btn btn-sm btn-grey">
+                                        <i class="bi bi-box-arrow-in-up-right me-1"></i> {% trans %}page.home.report.btn_submit{% endtrans %}
+                                    </button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal_report -->

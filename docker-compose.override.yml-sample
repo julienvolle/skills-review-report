@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+
+  dozzle:
+    image: amir20/dozzle
+    container_name: dozzle
+    ports:
+      - "8001:8080"
+    networks:
+      - app-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8002:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root_password
+    networks:
+      - app-net
+    restart: always
+
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+      - "8003:9000"
+    networks:
+      - app-net
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonar-data-vol:/opt/sonarqube/data
+    restart: always
+
+volumes:
+  sonar-data-vol:
+    external: false

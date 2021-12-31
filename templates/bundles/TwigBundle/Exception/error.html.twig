@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {% trans %}page.error.head_title{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <!-- error -->
+    <div class="container text-light text-center">
+
+        {% include('partial/_logo.html.twig') %}
+
+        <h1>{% trans %}page.error.title{% endtrans %}</h1>
+
+        <a class="btn btn-sm my-1 btn-pink rounded-0"
+           type="button"
+           title="{% trans %}page.error.btn_back{% endtrans %}"
+           href="{{ path('home') }}">
+            <i class="bi bi-house-door-fill me-1"></i> {% trans %}page.error.btn_back{% endtrans %}
+        </a>
+
+        <div class="bg-light text-danger p-5 mt-5">
+            <h2 class="fw-bold">{{ exception.statusCode }} {{ exception.statusText }}</h2>
+            <p class="m-0">{{ exception.message }}</p>
+        </div>
+
+        {% include('partial/_baseline.html.twig') %}
+
+    </div>
+    <!-- /error -->
+
+{% endblock %}

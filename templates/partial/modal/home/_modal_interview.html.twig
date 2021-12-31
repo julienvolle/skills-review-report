@@ -1,0 +1,70 @@
+<!-- modal_interview -->
+<div id="interviewModal"
+     class="modal fade"
+     aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="mb-0">{% trans %}page.home.interview.title{% endtrans %}</h3>
+                            <small class="text-muted">{% trans %}page.home.interview.subtitle{% endtrans %}</small>
+                            <hr class="m-0 my-2">
+                        </div>
+                        {% if frameworks|length > 0 %}
+                            {% if isGranted['interviews']['create'] and frameworks|length > 0 %}
+                                <div class="col">
+                                    <button id="buttonCreateInterview"
+                                            class="w-100 btn btn-sm my-1 btn-grey rounded-0"
+                                            type="button"
+                                            title="{% trans %}page.home.interview.btn_start{% endtrans %}"
+                                            data-bs-target="#interviewNewModal"
+                                            data-bs-toggle="modal"
+                                            data-bs-dismiss="modal">
+                                        <i class="bi bi-plus-circle me-1"></i> {% trans %}page.home.interview.btn_start{% endtrans %}
+                                    </button>
+                                </div>
+                            {% endif %}
+                            {% if isGranted['interviews']['update'] and interviews|length > 0 %}
+                                <div class="col">
+                                    <button id="buttonUpdateInterview"
+                                            class="w-100 btn btn-sm my-1 btn-grey rounded-0"
+                                            type="button"
+                                            title="{% trans %}page.home.interview.btn_resume{% endtrans %}"
+                                            data-bs-target="#interviewEditModal"
+                                            data-bs-toggle="modal"
+                                            data-bs-dismiss="modal">
+                                        <i class="bi bi-pencil-square me-1"></i> {% trans %}page.home.interview.btn_resume{% endtrans %}
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        {% if isGranted['interviews']['import'] %}
+                            <div class="col">
+                                <a id="buttonImportInterview"
+                                   class="w-100 btn btn-sm my-1 btn-grey rounded-0"
+                                   type="button"
+                                   title="{% trans %}page.home.interview.btn_import{% endtrans %}"
+                                   href="{{ path('interview_import') }}">
+                                    <i class="bi bi-upload me-1"></i> {% trans %}page.home.interview.btn_import{% endtrans %}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal_interview -->
+
+{% if frameworks|length > 0 %}
+    {% if isGranted['interviews']['create'] and frameworks|length > 0 %}
+        {% include('partial/modal/home/_modal_interview_create.html.twig') %}
+    {% endif %}
+    {% if isGranted['interviews']['update'] and interviews|length > 0 %}
+        {% include('partial/modal/home/_modal_interview_update.html.twig') %}
+    {% endif %}
+{% endif %}

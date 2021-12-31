@@ -1,0 +1,10 @@
+# Constant:           App\Constant\TranslationConstant
+# Switch locale:      App\Controller\LocaleController
+# Set current locale: App\EventSubscriber\LocaleSubscriber
+framework:
+    default_locale: en
+    enabled_locales: ['en', 'fr']
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - en

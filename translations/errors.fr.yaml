@@ -1,0 +1,28 @@
+exception:
+
+  framework:
+    400:
+      wrong_guid: "L'identifiant de la structure n'est pas valide"
+    404: "Structure inconnue"
+    delete:
+      is_used: "Une structure déjà utilisée ne peut pas être supprimée"
+    import:
+      already_exist: "Cette structure existe déjà"
+      upload_file:
+        extension: "L'extension du fichier \".%extension%\" n'est pas supportée"
+        type:      "Le type de fichier \"%file%\" n'est pas supporté"
+        invalid:   "Les données du fichier ne correspondent pas à une structure"
+
+  interview:
+    400:
+      wrong_guid: "L'identifiant de l'entretien n'est pas valide"
+    404: "Entretien inconnu"
+    import:
+      already_exist: "Cet entretien existe déjà"
+      upload_file:
+        extension: "L'extension du fichier \".%extension%\" n'est pas supportée"
+        type:      "Le type de fichier \"%file%\" n'est pas supporté"
+        invalid:   "Les données du fichier ne correspondent pas à un entretien"
+
+  semver:
+    invalid: "Le fichier semver n'est pas valide"

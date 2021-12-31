@@ -1,0 +1,29 @@
+flash:
+
+  framework:
+    saved:      "La structure a bien été enregistrée"
+    removed:    "La structure a bien été supprimée"
+    imported:   "La structure a bien été importée"
+    updated:    "La structure a bien été mise à jour"
+    up_to_date: "La structure est à jour"
+
+  interview:
+    saved:      "L'entretien a bien été sauvegardé"
+    removed:    "L'entretien a bien été supprimé"
+    imported:   "L'entretien a bien été importé"
+    updated:    "L'entretien a bien été mis à jour"
+    up_to_date: "L'entretien est à jour"
+
+  switch_locale:
+    failure: "Cette langue n'est pas disponible"
+
+  user:
+    registered: "Le compte a bien été créé"
+
+confirm:
+
+  framework:
+    delete: "Êtes-vous sûr de vouloir supprimer cette structure ?"
+
+  interview:
+    delete: "Êtes-vous sûr de vouloir supprimer cet entretien ?"

@@ -1,0 +1,24 @@
+{% import "partial/form/collection/macro/_macro_level.html.twig" as macro_level %}
+
+<label for="levels" class="form-label d-block">{% trans %}page.framework.label_levels{% endtrans %}</label>
+
+<ul id="levels"
+    class="form-collection list-group"
+    data-form-collection-container="<li class='form-collection-item list-group-item bg-light mb-2 p-2 rounded-0'></li>"
+    data-form-collection-prototype="{{ macro_level.form_row(form.vars.prototype)|e('html_attr') }}"
+    data-form-collection-prototype-name="{{ form.vars.prototype.vars.name }}">
+    {% for level in form|sort((a, b) => a.priority <=> b.priority) %}
+    <li class="form-collection-item list-group-item bg-light mb-2 p-2 rounded-0">
+        {{ macro_level.form_row(level) }}
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="d-flex flex-row">
+    <button type="button"
+            title="{% trans %}page.framework.level.btn_add{% endtrans %}"
+            class="form-collection-button-add btn btn-sm btn-grey mb-2 rounded-0"
+            data-form-collection-id="levels">
+        <i class="bi bi-plus-circle me-1"></i> {% trans %}page.framework.level.btn_add{% endtrans %}
+    </button>
+</div>

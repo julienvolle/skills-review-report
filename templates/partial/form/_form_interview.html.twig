@@ -1,0 +1,141 @@
+{{ form_start(form) }}
+
+    <div class="card border-secondary bg-transparent p-4 pb-2 rounded-0">
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                {{ form_row(form.title, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.createdAt, {'attr': {'class': 'form-control-sm rounded-0 datepicker'}}) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.firstname, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.lastname, {'attr': {'class': 'form-control-sm rounded-0'}}) }}
+            </div>
+            <div class="col-sm-12">
+                {{ form_row(form.level_required, {'attr': {'class': 'form-select-sm rounded-0'}}) }}
+            </div>
+
+            {% set gradient_color = getGradientColor(
+                interview.framework.levels.count,
+                constant('App\\Constant\\ColorConstant::GREY'),
+                constant('App\\Constant\\ColorConstant::PINK')
+            ) %}
+
+            {% for category in interview.framework.categories %}
+
+                <div class="col-sm-12">
+                    <div class="mb-3">
+                        <label class="form-label required">
+                            {% trans with {'%category_name%': category.name} %}page.interview.label_categry{% endtrans %}
+                        </label>
+                        <div class="card mb-2 text-dark rounded-0">
+                            <div class="card-header px-0">
+                                <div class="row mx-0">
+                                    <div class="col-sm-3 d-flex justify-content-end fw-bold">Level</div>
+                                    <div class="col-sm-9">
+                                        <div class="progress rounded-0">
+                                            {% set percent = 100 / interview.framework.levels.count %}
+                                            {% for level in interview.framework.levels|sort((a, b) => b.priority <=> a.priority) %}
+                                                {% set bg_color = "#" ~ gradient_color[loop.index0] %}
+                                                <div class="progress-bar"
+                                                     role="progressbar"
+                                                     style="width: {{ percent }}%; background-color: {{ bg_color }} !important;"
+                                                     aria-valuenow="{{ percent }}"
+                                                     aria-valuemin="0"
+                                                     aria-valuemax="100">{{ level.name }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body px-0">
+                                {% for skill in category.skills %}
+                                    <div class="row mx-0">
+                                        <div class="col-sm-3 d-flex justify-content-end text-nowrap">
+                                            {{ skill.name }}
+                                            <a class="bi bi-info-circle ms-1 pointer"
+                                               data-bs-container="body"
+                                               data-bs-toggle="popover"
+                                               data-bs-placement="right"
+                                               data-bs-trigger="hover focus"
+                                               data-bs-content="{{ skill.description|default('None') }}"
+                                            ></a>
+                                        </div>
+                                        <div class="col-sm-9 d-flex justify-content-center p-0">
+                                            {{ form_widget(attribute(form, skill.guid), {
+                                                'attr': {
+                                                    'style': 'max-width: ' ~ (100 - (100 / interview.framework.levels.count)|round) ~ '%;'
+                                                }
+                                            }) }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="card-footer p-2">
+                                {{ form_widget(attribute(form, category.guid), {
+                                    'attr': {'class': 'rounded-0'},
+                                    'label_attr': {'class': 'mt-2'}
+                                }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            <div class="col-sm-12">
+                {{ form_row(attribute(form, interview.framework.guid), {
+                    'attr': {'class': 'rounded-0'},
+                    'label_attr': {'class': 'mt-2'}
+                }) }}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="mt-2 mb-4">
+        <button class="btn btn-sm btn-yellow rounded-0"
+                type="submit"
+                title="{% trans %}page.interview.btn_save{% endtrans %}"
+                id="interview_save"
+                name="save">
+            <i class="bi bi-hdd-stack me-1"></i> {% trans %}page.interview.btn_save{% endtrans %}
+        </button>
+        {% if interview is defined and interview.id is not null %}
+            {% if isGranted['interviews']['export'] %}
+                <a href="{{ path('interview_export', {'interview_id': interview.guid}) }}"
+                   target="_blank"
+                   type="button"
+                   title="{% trans %}page.interview.btn_export{% endtrans %}"
+                   class="btn btn-sm btn-orange rounded-0">
+                    <i class="bi bi-download me-1"></i> {% trans %}page.interview.btn_export{% endtrans %}
+                </a>
+            {% endif %}
+            {% if isGranted['interviews']['delete'] %}
+                <a href="{{ path('interview_delete', {'interview_id': interview.guid}) }}"
+                   type="button"
+                   title="{% trans %}page.interview.btn_delete{% endtrans %}"
+                   onclick="return confirm('{% trans from 'alerts' %}confirm.interview.delete{% endtrans %}');"
+                   class="btn btn-sm btn-red rounded-0">
+                    <i class="bi bi-trash me-1"></i> {% trans %}page.interview.btn_delete{% endtrans %}
+                </a>
+            {% endif %}
+            <a href="{{ path('interview_report', {'interview_id': interview.guid}) }}"
+               target="_blank"
+               type="button"
+               title="{% trans %}page.interview.btn_report{% endtrans %}"
+               class="btn btn-sm btn-cyan rounded-0 float-end">
+                <i class="bi bi-file-earmark-check"></i> {% trans %}page.interview.btn_report{% endtrans %}
+            </a>
+        {% endif %}
+    </div>
+
+    {{ form_row(form._token) }}
+
+{{ form_end(form, {render_rest: false}) }}

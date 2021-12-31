@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+
+    {{ form_row(form.file) }}
+
+    {{ form_row(form.delete, {'label_attr': {'style': 'line-height: 1.5 !important'}}) }}
+
+    <button class="btn btn-sm btn-yellow rounded-0"
+            type="submit"
+            name="save"
+            title="{% trans %}page.import.btn_submit{% endtrans %}">
+        <i class="bi bi-upload me-1"></i> {% trans %}page.import.btn_submit{% endtrans %}
+    </button>
+
+    {{ form_row(form._token) }}
+
+{{ form_end(form, {render_rest: false}) }}

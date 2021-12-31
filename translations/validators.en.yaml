@@ -1,0 +1,24 @@
+field:
+  name:
+    length:
+      min: "The name must be at least {{ limit }} characters long"
+      max: "The name cannot be longer than {{ limit }} characters"
+  description:
+    length:
+      max: "The description cannot be longer than {{ limit }} characters"
+  title:
+    length:
+      min: "The title must be at least {{ limit }} characters long"
+      max: "The title cannot be longer than {{ limit }} characters"
+  lastname:
+    length:
+      min: "The last name must be at least {{ limit }} characters long"
+      max: "The last name cannot be longer than {{ limit }} characters"
+  firstname:
+    length:
+      min: "The first name must be at least {{ limit }} characters long"
+      max: "The first name cannot be longer than {{ limit }} characters"
+  email:
+    length:
+      min: "The email must be at least {{ limit }} characters long"
+      max: "The email cannot be longer than {{ limit }} characters"

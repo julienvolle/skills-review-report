@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {% trans %}page.register.head_title{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <!-- register -->
+    <main role="main" class="text-center">
+
+        {% include('partial/_logo.html.twig') %}
+
+        <div class="bg-light p-4">
+
+            <div class="text-muted mb-2">{% trans %}page.register.title{% endtrans %}</div>
+
+            {% include('partial/form/_form_register.html.twig') with form %}
+
+        </div>
+
+        {% include('partial/_baseline.html.twig') %}
+
+    </main>
+    <!-- /register -->
+
+{% endblock %}

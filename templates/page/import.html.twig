@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {{ title }}{% endblock %}
+
+{% block content %}
+
+    <div class="container text-light text-center">
+
+        {% include('partial/_logo.html.twig') %}
+
+        <h1>{{ title }}</h1>
+
+        <a class="btn btn-sm my-1 btn-pink rounded-0"
+           type="button"
+           title="{% trans %}page.import.btn_back{% endtrans %}"
+           href="{{ path('home') }}">
+            <i class="bi bi-house-door-fill me-1"></i> {% trans %}page.import.btn_back{% endtrans %}
+        </a>
+
+        {% block form %}
+
+            <div class="my-5 text-sm-start">
+                {% include('partial/form/_form_import.html.twig') with form %}
+            </div>
+
+        {% endblock %}
+
+        {% include('partial/_baseline.html.twig') %}
+
+    </div>
+
+{% endblock %}

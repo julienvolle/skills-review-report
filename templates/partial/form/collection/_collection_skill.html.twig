@@ -1,0 +1,46 @@
+{% import "partial/form/collection/macro/_macro_skill.html.twig" as macro_skill %}
+
+<div class="card rounded-0 border-0">
+    {% set id = "skills_" ~ category_id %}
+    <div class="accordion" id="accordion{{ id }}">
+        <div class="accordion-item border-0 rounded-0">
+            <h2 class="accordion-header" id="flush-heading{{ id }}">
+                <button class="accordion-button collapsed bg-dark bg-opacity-10 p-2 rounded-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse{{ id }}"
+                        aria-expanded="false"
+                        aria-controls="flush-collapse{{ id }}">
+                    <label for="{{ id }}" class="form-label pointer mb-0">{% trans %}page.framework.label_skills{% endtrans %}</label>
+                </button>
+            </h2>
+            <div id="flush-collapse{{ id }}"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="flush-heading{{ id }}"
+                 data-bs-parent="#accordion{{ id }}">
+                <div class="accordion-body bg-dark bg-opacity-25 p-2">
+                    {% set li_class = 'form-collection-item list-group-item bg-light border-1 p-2 mb-2 rounded-0' %}
+                    <ul id="{{ id }}"
+                        class="form-collection list-group"
+                        data-form-collection-container="<li class='{{ li_class }}'></li>"
+                        data-form-collection-prototype="{{ macro_skill.form_row(form.vars.prototype)|e('html_attr') }}"
+                        data-form-collection-prototype-name="{{ form.vars.prototype.vars.name }}">
+                        {% for skill in form|sort((a, b) => a.priority <=> b.priority) %}
+                            <li class="{{ li_class }}">
+                                {{ macro_skill.form_row(skill) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="d-flex flex-row">
+                        <button type="button"
+                                title="{% trans %}page.framework.skill.btn_add{% endtrans %}"
+                                class="form-collection-button-add btn btn-sm btn-grey m-0 rounded-0"
+                                data-form-collection-id="{{ id }}">
+                            <i class="bi bi-plus-circle me-1"></i> {% trans %}page.framework.skill.btn_add{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

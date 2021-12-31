@@ -1,0 +1,24 @@
+field:
+  name:
+    length:
+      min: "Le nom doit comporter au moins {{ limit }} caractères"
+      max: "Le nom ne peut pas dépasser {{ limit }} caractères"
+  description:
+    length:
+      max: "La description ne peut pas dépasser {{ limit }} caractères"
+  title:
+    length:
+      min: "Le titre doit comporter au moins {{ limit }} caractères"
+      max: "Le titre ne peut pas dépasser {{ limit }} caractères"
+  lastname:
+    length:
+      min: "Le nom de famille doit comporter au moins {{ limit }} caractères"
+      max: "Le nom de famille ne peut pas dépasser {{ limit }} caractères"
+  firstname:
+    length:
+      min: "Le prénom doit comporter au moins {{ limit }} caractères"
+      max: "Le prénom ne peut pas dépasser {{ limit }} caractères"
+  email:
+    length:
+      min: "L'email doit comporter au moins {{ limit }} caractères"
+      max: "L'email ne peut pas dépasser {{ limit }} caractères"
