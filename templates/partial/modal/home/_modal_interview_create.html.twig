@@ -1,0 +1,46 @@
+<!-- modal_interview_create -->
+<div id="interviewNewModal"
+     class="modal fade"
+     aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-2">
+                                <button class="btn-close position-absolute top-0 end-0 mt-1 me-1"
+                                        type="button"
+                                        data-bs-target="#interviewModal"
+                                        data-bs-toggle="modal"
+                                        data-bs-dismiss="modal"></button>
+                                <label for="interview_create_guid" class="form-label required">
+                                    {% trans %}page.home.interview.create.label{% endtrans %}
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-select form-select-sm rounded-0" id="interview_create_guid">
+                                        {% for framework in frameworks %}
+                                            <option value="{{ framework.guid }}">{{ framework.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="button"
+                                            title="{% trans %}page.home.interview.create.btn_submit{% endtrans %}"
+                                            id="interview_create_submit"
+                                            data-button="button"
+                                            data-button-href="{{ path('interview_create', {'framework_id': '___guid___'}) }}"
+                                            data-button-context="{'___guid___': '#interview_create_guid'}"
+                                            data-button-target="_self"
+                                            class="btn btn-sm btn-grey rounded-0">
+                                        <i class="bi bi-box-arrow-in-up-right me-1"></i> {% trans %}page.home.interview.create.btn_submit{% endtrans %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal_interview_create -->

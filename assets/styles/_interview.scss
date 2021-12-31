@@ -1,0 +1,41 @@
+@import "color";
+
+#interview_create, #interview_update {
+  /* Chrome */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      background-color: transparent;
+      &::-webkit-slider-runnable-track {
+        color: $color-grey-light !important;
+      }
+      &::-webkit-slider-thumb {
+        background: $color-yellow !important;
+      }
+    }
+  }
+  input[type='range'] {
+    /* Firefox */
+    &::-moz-range-thumb {
+      background-color: $color-yellow !important;
+    }
+    &::-moz-range-progress {
+      background-color: $color-grey !important;
+    }
+    &::-moz-range-track {
+      background-color: $color-grey-light !important;
+    }
+    /* Internet Explorer */
+    &::-ms-fill-lower {
+      background-color: $color-grey !important;
+    }
+    &::-ms-fill-upper {
+      background-color: $color-grey-light !important;
+    }
+  }
+}
+
+#interview_report {
+  .progress-small {
+    height: 3px !important;
+  }
+}

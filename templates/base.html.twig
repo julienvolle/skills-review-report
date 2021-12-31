@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block meta %}<meta charset="UTF-8">{% endblock %}
+        <title>{% block title %}{% trans %}page.title{% endtrans %}{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('build/images/favicon.ico') }}" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+    </head>
+    <body id="{{ app.request.get('_route') }}">
+        {% block header %}
+            {% include('partial/_translation.html.twig') %}
+            {% include('partial/_session.html.twig') %}
+        {% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+        {% include('partial/modal/_flash_messages.html.twig') %}
+    </body>
+</html>

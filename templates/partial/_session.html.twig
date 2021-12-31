@@ -1,0 +1,15 @@
+{% if app.user %}
+
+    <div id="session" class="position-absolute top-0 end-0">
+        <button type="button"
+                title="{% trans %}page.session.btn_profile{% endtrans %}"
+                class="btn bg-transparent text-muted"
+                data-bs-toggle="modal"
+                data-bs-target="#profileModal">
+            <i class="bi bi-person-circle fs-3"></i>
+        </button>
+    </div>
+
+    {% include('partial/modal/_profile.html.twig') %}
+
+{% endif %}

@@ -1,0 +1,27 @@
+@import "color";
+@import '~bootstrap/scss/functions';
+
+$accordion-button-active-icon-custom: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$color-pink}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+
+#framework_create, #framework_update {
+  .sortable-drag {
+    background-color: $color-grey !important;
+  }
+
+  .handle {
+    cursor: grab;
+  }
+
+  .accordion-button {
+    &:not(.collapsed) {
+      color: $color-pink !important;
+      box-shadow: none;
+      &::after {
+        background-image: escape-svg($accordion-button-active-icon-custom);
+      }
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

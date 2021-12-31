@@ -1,0 +1,29 @@
+<div id="translation" class="position-absolute top-0 start-0">
+    <p class="text-secondary p-2 m-2 bg-light bg-opacity-10 rounded-3">
+        <small>
+            {% for language in getLanguages() %}
+                {% if language == app.request.locale %}
+                    {% set title = 'page.translation.current_language'|trans({
+                        '%language%': ('page.language.' ~ language)|trans|lower
+                    }) %}
+                    <span title="{{ title }}"
+                          class="link-light text-decoration-none pe-default fw-bold">{{ language|upper }}</span>
+                    {% if not loop.last %} | {% endif %}
+                {% else %}
+                    {% set route = app.request.attributes.get('_route') %}
+                    {% if route == 'security_login' or route == 'security_register' %}
+                        {% set href = path(route, {'_locale': language}) %}
+                    {% else %}
+                        {% set href = path('switch_locale', {'language': language}) %}
+                    {% endif %}
+                    {% set title = 'page.translation.translate_in'|trans({
+                        '%language%': ('page.language.' ~ language)|trans|lower
+                    }) %}
+                    <a class="link-secondary text-decoration-none"
+                       title="{{ title }}"
+                       href="{{ href }}">{{ language|upper }}</a>{% if not loop.last %} | {% endif %}
+                {% endif %}
+            {% endfor %}
+        </small>
+    </p>
+</div>

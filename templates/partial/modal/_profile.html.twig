@@ -1,0 +1,30 @@
+<!-- modal_profile -->
+<div id="profileModal"
+     class="modal fade"
+     aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="mb-0">{% trans %}page.profile.title{% endtrans %}</h3>
+                            <small class="text-muted">{{ app.user.userIdentifier }}</small>
+                            <hr class="m-0 my-2">
+                        </div>
+                        <div class="col">
+                            <a class="w-100 btn btn-sm my-1 btn-red rounded-0"
+                               title="{% trans %}page.profile.btn_logout{% endtrans %}"
+                               type="button"
+                               href="{{ path('security_logout') }}">
+                                <i class="bi bi-stop-circle"></i> {% trans %}page.profile.btn_logout{% endtrans %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal_profile -->

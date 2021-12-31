@@ -1,0 +1,27 @@
+{% import "partial/form/collection/macro/_macro_category.html.twig" as macro_category %}
+
+<label for="categories" class="form-label d-block">{% trans %}page.framework.label_categories{% endtrans %}</label>
+
+<ul id="categories"
+    class="form-collection list-group mb-0"
+    data-form-collection-container="<li class='form-collection-item list-group-item bg-light mb-2 p-2 rounded-0'></li>"
+    data-form-collection-prototype="{{ macro_category.form_row(
+        form.vars.prototype,
+        form.vars.prototype.vars.name
+    )|e('html_attr') }}"
+    data-form-collection-prototype-name="{{ form.vars.prototype.vars.name }}">
+    {% for category in form|sort((a, b) => a.priority <=> b.priority) %}
+    <li class="form-collection-item list-group-item bg-light mb-2 p-2 rounded-0">
+        {{ macro_category.form_row(category, loop.index0) }}
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="d-flex flex-row">
+    <button type="button"
+            title="{% trans %}page.framework.category.btn_add{% endtrans %}"
+            class="form-collection-button-add btn btn-sm btn-grey rounded-0"
+            data-form-collection-id="categories">
+        <i class="bi bi-plus-circle me-1"></i> {% trans %}page.framework.category.btn_add{% endtrans %}
+    </button>
+</div>

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <!-- nav -->
+    <nav id="navbar" role="navigation" class="text-center">
+
+        {% include('partial/_logo.html.twig') %}
+
+        {% if isGranted['frameworks']['access'] %}
+            <a id="buttonFrameworks"
+               class="w-100 btn btn-sm my-1 btn-pink rounded-0"
+               title="{% trans %}page.home.btn_framework{% endtrans %}"
+               type="button"
+               data-bs-target="#frameworkModal"
+               data-bs-toggle="modal"
+               data-bs-dismiss="modal">
+                <i class="bi bi-grid"></i> {% trans %}page.home.btn_framework{% endtrans %}
+            </a>
+        {% endif %}
+
+        {% if isGranted['interviews']['access'] %}
+            {% if frameworks is not empty or isGranted['interviews']['import'] %}
+                <a id="buttonInterviews"
+                   class="w-100 btn btn-sm my-1 btn-pink rounded-0"
+                   title="{% trans %}page.home.btn_interview{% endtrans %}"
+                   type="button"
+                   data-bs-target="#interviewModal"
+                   data-bs-toggle="modal"
+                   data-bs-dismiss="modal">
+                    <i class="bi bi-people-fill me-1"></i> {% trans %}page.home.btn_interview{% endtrans %}
+                </a>
+            {% endif %}
+            {% if reports is not empty and not isGranted['frameworks']['access'] %}
+                <a id="buttonReports"
+                   class="w-100 btn btn-sm my-1 btn-pink rounded-0"
+                   title="{% trans %}page.home.btn_report{% endtrans %}"
+                   type="button"
+                   data-bs-target="#reportModal"
+                   data-bs-toggle="modal"
+                   data-bs-dismiss="modal">
+                    <i class="bi bi-file-earmark-check"></i> {% trans %}page.home.btn_report{% endtrans %}
+                </a>
+            {% endif %}
+        {% endif %}
+
+        {% include('partial/_baseline.html.twig') %}
+
+    </nav>
+    <!-- /nav -->
+
+    <!-- modals -->
+    {% if isGranted['frameworks']['access'] %}
+        {% include('partial/modal/home/_modal_framework.html.twig') %}
+    {% endif %}
+    {% if isGranted['interviews']['access'] %}
+        {% if frameworks is not empty or isGranted['interviews']['import'] %}
+            {% include('partial/modal/home/_modal_interview.html.twig') %}
+        {% endif %}
+        {% if reports is not empty and not isGranted['frameworks']['access'] %}
+            {% include('partial/modal/home/_modal_report.html.twig') %}
+        {% endif %}
+    {% endif %}
+    <!-- /modals -->
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <file>config</file>
+    <file>migrations</file>
+    <file>public</file>
+    <file>src</file>
+    <file>tests</file>
+
+    <arg name="colors"/>
+    <arg name="cache" value="phpcs.cache"/>
+    <arg name="extensions" value="php"/>
+    <arg value="p"/>
+
+    <config name="testVersion" value="7.4-"/>
+    <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
+
+    <rule ref="PHPCompatibility"/>
+    <rule ref="PSR1"/>
+    <rule ref="PSR12"/>
+
+</ruleset>

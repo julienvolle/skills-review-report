@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {% trans %}page.login.head_title{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <!-- login -->
+    <main role="main" class="text-center">
+
+        <form method="post">
+
+            {% include('partial/_logo.html.twig') %}
+
+            <div class="bg-light p-4">
+
+                <div class="text-muted mb-2">{% trans %}page.login.title{% endtrans %}</div>
+
+                <div class="input-group input-group-sm mb-2">
+                    <label for="username" class="form-label d-none">{% trans %}page.login.label_email{% endtrans %}</label>
+                    <input type="email"
+                           id="username"
+                           name="_username"
+                           placeholder="{% trans %}page.login.label_email{% endtrans %}"
+                           autocomplete="email"
+                           required
+                           autofocus
+                           class="form-control rounded-0">
+                    <div class="input-group-append">
+                        <div class="input-group-text rounded-0">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group input-group-sm mb-2">
+                    <label for="password" class="form-label d-none">{% trans %}page.login.label_password{% endtrans %}</label>
+                    <input type="password"
+                           id="password"
+                           name="_password"
+                           placeholder="{% trans %}page.login.label_password{% endtrans %}"
+                           autocomplete="current-password"
+                           required
+                           class="form-control rounded-0">
+                    <div class="input-group-append">
+                        <div class="input-group-text rounded-0">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="row gx-1">
+                    <div class="col">
+                        <a href="{{ path('security_register') }}"
+                           class="w-100 btn btn-sm btn-grey rounded-0"
+                           title="{% trans %}page.login.btn_register{% endtrans %}">
+                            <i class="bi bi-person-plus me-1"></i> {% trans %}page.login.btn_register{% endtrans %}
+                        </a>
+                    </div>
+                    <div class="col">
+                        <button class="w-100 btn btn-sm btn-pink rounded-0"
+                                type="submit"
+                                title="{% trans %}page.login.btn_submit{% endtrans %}">
+                            <i class="bi bi-box-arrow-in-up-right me-1"></i> {% trans %}page.login.btn_submit{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+        {% include('partial/_baseline.html.twig') %}
+
+    </main>
+    <!-- /login -->
+
+{% endblock %}

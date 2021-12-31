@@ -1,0 +1,71 @@
+@import "color";
+
+$pink:    $color-pink;
+$red:     $color-red;
+$orange:  $color-orange;
+$yellow:  $color-yellow;
+$cyan:    $color-cyan;
+
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import "~jquery-datetimepicker/build/jquery.datetimepicker.min.css";
+
+.text-pink   { color: $color-pink; }
+.text-grey   { color: $color-grey; }
+.text-yellow { color: $color-yellow; }
+.text-cyan   { color: $color-cyan; }
+.text-orange { color: $color-orange; }
+.text-red    { color: $color-red; }
+
+.link-pink   { color: $color-pink;   &:hover { color: $color-pink;   text-decoration: underline !important; } }
+.link-grey   { color: $color-grey;   &:hover { color: $color-grey;   text-decoration: underline !important; } }
+.link-pink   { color: $color-yellow; &:hover { color: $color-yellow; text-decoration: underline !important; } }
+.link-pink   { color: $color-cyan;   &:hover { color: $color-cyan;   text-decoration: underline !important; } }
+.link-pink   { color: $color-orange; &:hover { color: $color-orange; text-decoration: underline !important; } }
+.link-pink   { color: $color-red;    &:hover { color: $color-red;    text-decoration: underline !important; } }
+
+.btn-pink   { @include button-variant($color-pink,   darken($color-pink,   3%), white); }
+.btn-grey   { @include button-variant($color-grey,   darken($color-grey,   3%), white); }
+.btn-yellow { @include button-variant($color-yellow, darken($color-yellow, 3%), black); }
+.btn-cyan   { @include button-variant($color-cyan,   darken($color-cyan,   3%), white); }
+.btn-orange { @include button-variant($color-orange, darken($color-orange, 3%), black); }
+.btn-red    { @include button-variant($color-red,    darken($color-red,    3%), white); }
+
+.bg-pink   { @include gradient-bg($color-pink); }
+.bg-grey   { @include gradient-bg($color-grey); }
+.bg-yellow { @include gradient-bg($color-yellow); }
+.bg-cyan   { @include gradient-bg($color-cyan); }
+.bg-orange { @include gradient-bg($color-orange); }
+.bg-red    { @include gradient-bg($color-red); }
+
+html,
+body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.0;
+}
+
+body {
+  background-image: url("/assets/images/background.jpg");
+  background-position: center center;
+  background-color: $color-grey;
+}
+
+.btn {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.pe-default {
+  cursor: default !important;
+}
+
+@import "home";
+@import "security";
+@import "framework";
+@import "interview";

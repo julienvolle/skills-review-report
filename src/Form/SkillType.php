@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Form;
+
+use App\Entity\Skill;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class SkillType extends AbstractType
+{
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) on parameter $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('name', TextType::class, [
+                'required' => true,
+                'attr'     => ['placeholder' => 'page.framework.skill.label_name'],
+            ])
+            ->add('description', TextType::class, [
+                'required' => false,
+                'attr'     => ['placeholder' => 'page.framework.skill.label_description'],
+            ])
+            ->add('priority', HiddenType::class, [
+                'required' => true,
+                'attr'     => ['data-sortable' => 'priority'],
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Skill::class,
+        ]);
+    }
+}

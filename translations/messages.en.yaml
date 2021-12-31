@@ -1,0 +1,137 @@
+page:
+
+  title:    "Skills Review"
+  logo_alt: "Conserto"
+  baseline: "Open Source Project &copy; 2022"
+
+  session:
+    btn_profile:      "Profile"
+
+  translation:
+    current_language: "Currently in %language%"
+    translate_in:     "Translate in %language%"
+
+  language:
+    en: "English"
+    fr: "French"
+
+  profile:
+    title:      "Profile"
+    btn_logout: "Logout"
+
+  login:
+    head_title:     "Login"
+    title:          "Sign in to start your session"
+    label_email:    "Email"
+    label_password: "Password"
+    btn_submit:     "Submit"
+    btn_register:   "Register?"
+
+  register:
+    head_title:     "Register"
+    title:          "Create a new account"
+    label_email:    "Email"
+    label_password: "Password"
+    label_role:     "Role"
+    roles:
+      user:         "View interview reports"
+      admin:        "Conduct interviews"
+    btn_submit:     "Submit"
+
+  home:
+    btn_framework: "Framework"
+    btn_interview: "Interview"
+    btn_report:    "Report"
+    framework:
+      title:      "Framework"
+      subtitle:   "Manage the interview frameworks"
+      btn_create: "New"
+      btn_update: "Edit"
+      btn_import: "Import"
+      update:
+        label:      "Select the framework to edit"
+        btn_submit: "Submit"
+    interview:
+      title:      "Interview"
+      subtitle:   "Begin a skills review & build a report"
+      btn_start:  "Start"
+      btn_resume: "Resume"
+      btn_import: "Import"
+      create:
+        label:      "Select a framework to begin interview"
+        btn_submit: "Submit"
+      update:
+        label:      "Select the interview to edit"
+        btn_submit: "Submit"
+    report:
+      label:      "Select an interview to display the report"
+      btn_submit: "Submit"
+
+  framework:
+    head_title:        "Framework"
+    title:             "Framework"
+    btn_back:          "Back to home"
+    btn_save:          "Save"
+    btn_export:        "Export"
+    btn_delete:        "Remove"
+    btn_start:         "Start an interview"
+    label_name:        "Name"
+    label_description: "Description"
+    label_levels:      "Levels (rating scale)"
+    label_categories:  "Categories (various topics for your interview)"
+    label_skills:      "Skills (topics discussed here)"
+    level:
+      label_name: "Name"
+      btn_add:    "Add a level"
+      btn_del:    "Remove this level"
+      btn_move:   "Move this level"
+    category:
+      label_name:        "Name"
+      label_description: "Description"
+      btn_add:           "Add a category"
+      btn_del:           "Remove this category"
+      btn_move:          "Move this category"
+    skill:
+      label_name:        "Name"
+      label_description: "Description"
+      btn_add:           "Add a skill"
+      btn_del:           "Remove this skill"
+      btn_move:          "Move this skill"
+
+  interview:
+    head_title:             "Interview"
+    title:                  "Interview"
+    label_title:            "Title"
+    label_firstname:        "Firstname"
+    label_lastname:         "Lastname"
+    label_date:             "Date"
+    label_level_required:   "Level required"
+    label_categry:          "Topic \"%category_name%\""
+    label_conclusion:       "Conclusion"
+    placeholder_comment:    "Add comment..."
+    placeholder_conclusion: "Final return, profile validation, recommendations..."
+    btn_back:               "Back to home"
+    btn_save:               "Save"
+    btn_export:             "Export"
+    btn_delete:             "Remove"
+    btn_report:             "View report"
+
+  import:
+    title_framework: "Import a framework"
+    title_interview: "Import an interview"
+    label_file:      "Select your file (.json)"
+    label_dropzone:  "Drag and drop or browse"
+    label_delete:    "Delete the current data if it already exists?"
+    btn_back:        "Back to home"
+    btn_submit:      "Upload"
+
+  report:
+    head_title:     "Report"
+    level_required: "Level required"
+    final_result:   "Final result"
+    result:         "Result"
+
+  error:
+    head_title: "Error"
+    title:      "Oops! An error occurred"
+    btn_back:   "Back to home"

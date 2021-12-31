@@ -1,0 +1,29 @@
+flash:
+
+  framework:
+    saved:      "Framework has been saved"
+    removed:    "Framework has been removed"
+    imported:   "The framework has been imported"
+    updated:    "The framework has been updated"
+    up_to_date: "The framework is up to date"
+
+  interview:
+    saved:      "Interview has been saved"
+    removed:    "Interview has been removed"
+    imported:   "The interview has been imported"
+    updated:    "The interview has been updated"
+    up_to_date: "The interview is up to date"
+
+  switch_locale:
+    failure: "This language is not available"
+
+  user:
+    registered: "Account has been registered"
+
+confirm:
+
+  framework:
+    delete: "Are you sure you want to delete this framework?"
+
+  interview:
+    delete: "Are you sure you want to delete this interview?"

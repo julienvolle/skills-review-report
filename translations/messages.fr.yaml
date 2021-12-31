@@ -1,0 +1,137 @@
+page:
+
+  title:    "Bilan de compétences"
+  logo_alt: "Conserto"
+  baseline: "Projet Open Source &copy; 2022"
+
+  session:
+    btn_profile:      "Profil"
+
+  translation:
+    current_language: "Actuellement en %language%"
+    translate_in:     "Traduire en %language%"
+
+  language:
+    en: "Anglais"
+    fr: "Français"
+
+  profile:
+    title:      "Profil"
+    btn_logout: "Déconnexion"
+
+  login:
+    head_title:     "Connexion"
+    title:          "Connectez-vous pour démarrer votre session"
+    label_email:    "Email"
+    label_password: "Mot de passe"
+    btn_submit:     "Valider"
+    btn_register:   "Inscription ?"
+
+  register:
+    head_title:     "Inscription"
+    title:          "Créer un nouveau compte"
+    label_email:    "Email"
+    label_password: "Mot de passe"
+    label_role:     "Rôle"
+    roles:
+      user:         "Voir les rapports d'entretien"
+      admin:        "Mener des entretiens"
+    btn_submit:     "Valider"
+
+  home:
+    btn_framework: "Structure"
+    btn_interview: "Entretien"
+    btn_report:    "Rapport"
+    framework:
+      title:      "Structure"
+      subtitle:   "Gestion de la structure des entretiens"
+      btn_create: "Créer"
+      btn_update: "Modifier"
+      btn_import: "Importer"
+      update:
+        label:      "Sélectionner la structure à modifier"
+        btn_submit: "Valider"
+    interview:
+      title:      "Entretien"
+      subtitle:   "Commencer un bilan de compétences et générer un rapport"
+      btn_start:  "Démarrer"
+      btn_resume: "Reprendre"
+      btn_import: "Importer"
+      create:
+        label:      "Sélectionner une structure pour démarrer l'entretien"
+        btn_submit: "Valider"
+      update:
+        label:      "Sélectionner l'entretien que vous souhaitez continuer"
+        btn_submit: "Valider"
+    report:
+      label:      "Sélectionner un entretien pour voir le rapport"
+      btn_submit: "Valider"
+
+  framework:
+    head_title:        "Structure"
+    title:             "Structure"
+    btn_back:          "Retour à l'accueil"
+    btn_save:          "Sauvegarder"
+    btn_export:        "Exporter"
+    btn_delete:        "Supprimer"
+    btn_start:         "Démarrer un entretien"
+    label_name:        "Nom"
+    label_description: "Description"
+    label_levels:      "Niveaux (échelle d'évaluation)"
+    label_categories:  "Catégories (différents sujets à aborder)"
+    label_skills:      "Compétences (points à évaluer)"
+    level:
+      label_name: "Nom"
+      btn_add:    "Ajouter un niveau"
+      btn_del:    "Supprimer ce niveau"
+      btn_move:   "Déplacer ce niveau"
+    category:
+      label_name:        "Nom"
+      label_description: "Description"
+      btn_add:           "Ajouter une catégorie"
+      btn_del:           "Supprimer cette catégorie"
+      btn_move:          "Déplacer cette catégorie"
+    skill:
+      label_name:        "Nom"
+      label_description: "Description"
+      btn_add:           "Ajouter une compétence"
+      btn_del:           "Supprimer cette compétence"
+      btn_move:          "Déplacer cette compétence"
+
+  interview:
+    head_title:             "Entretien"
+    title:                  "Entretien"
+    label_title:            "Titre"
+    label_firstname:        "Prénom"
+    label_lastname:         "Nom"
+    label_date:             "Date"
+    label_level_required:   "Niveau requis"
+    label_categry:          "Sujet \"%category_name%\""
+    label_conclusion:       "Bilan"
+    placeholder_comment:    "Ajouter un commentaire..."
+    placeholder_conclusion: "Retour global, validation du profil, recommandations..."
+    btn_back:               "Retour à l'accueil"
+    btn_save:               "Sauvegarder"
+    btn_export:             "Exporter"
+    btn_delete:             "Supprimer"
+    btn_report:             "Voir le rapport"
+
+  import:
+    title_framework: "Importer une structure"
+    title_interview: "Importer un entretien"
+    label_file:      "Sélectionner votre fichier (.json)"
+    label_dropzone:  "Glisser-déposer ou parcourir"
+    label_delete:    "Supprimer les données actuelles si elles existent déjà ?"
+    btn_back:        "Retour à l'accueil"
+    btn_submit:      "Envoyer"
+
+  report:
+    head_title:     "Rapport"
+    level_required: "Niveau requis"
+    final_result:   "Score final"
+    result:         "Score"
+
+  error:
+    head_title: "Erreur"
+    title:      "Oups! Une erreur s'est produite"
+    btn_back:   "Retour à l'accueil"

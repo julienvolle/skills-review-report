@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {% trans %}page.interview.head_title{% endtrans %}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('datepicker') }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container text-light text-center">
+
+        {% include('partial/_logo.html.twig') %}
+
+        <h1>{% trans %}page.interview.title{% endtrans %}</h1>
+
+        <a class="btn btn-sm my-1 btn-pink rounded-0"
+           type="button"
+           title="{% trans %}page.interview.btn_back{% endtrans %}"
+           href="{{ path('home') }}">
+            <i class="bi bi-house-door-fill me-1"></i> {% trans %}page.interview.btn_back{% endtrans %}
+        </a>
+
+        {% block form %}
+
+            <div class="my-5 text-sm-start">
+                {% include('partial/form/_form_interview.html.twig') with form %}
+            </div>
+
+        {% endblock %}
+
+        {% include('partial/_baseline.html.twig') %}
+
+    </div>
+
+{% endblock %}

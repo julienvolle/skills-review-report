@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+
+    <div class="input-group input-group-sm mb-2">
+        {{ form_label(form.email, '', {'label_attr': {'class': 'form-label d-none'}}) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control rounded-0'}}) }}
+        <div class="input-group-append">
+            <div class="input-group-text rounded-0">
+                <i class="bi bi-envelope-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group input-group-sm mb-2">
+        {{ form_label(form.plainPassword, '', {'label_attr': {'class': 'form-label d-none'}}) }}
+        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control rounded-0'}}) }}
+        <div class="input-group-append">
+            <div class="input-group-text rounded-0">
+                <i class="bi bi-shield-lock-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group input-group-sm mb-2">
+        {{ form_label(form.role, '', {'label_attr': {'class': 'form-label d-none'}}) }}
+        {{ form_widget(form.role, {'attr': {'class': 'form-control rounded-0'}}) }}
+        <div class="input-group-append">
+            <div class="input-group-text rounded-0">
+                <i class="bi bi-layers-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <button class="w-100 btn btn-sm btn-pink rounded-0" type="submit" title="{% trans %}page.register.btn_submit{% endtrans %}">
+        <i class="bi bi-box-arrow-in-up-right me-1"></i> {% trans %}page.register.btn_submit{% endtrans %}
+    </button>
+
+    {{ form_row(form._token) }}
+
+{{ form_end(form, {render_rest: false}) }}
